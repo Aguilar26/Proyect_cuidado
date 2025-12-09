@@ -139,7 +139,3 @@ pyodbc==5.1.0
 
 ---
 
-## 👨‍💻 Autor
-
-Proyecto desarrollado por **Julian Aguilar**  
-Arquitecto autodidacta de soluciones técnicas y editoriales, especializado en Python/Django y SQL Server.
