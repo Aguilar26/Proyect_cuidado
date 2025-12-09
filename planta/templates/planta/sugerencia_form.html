@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador de Plantas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #88c0d0, #5e81ac);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 100%;
+            animation: aparecer 0.6s ease;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #2e3440;
+            margin-bottom: 25px;
+            font-size: 26px;
+            animation: entrada 0.8s ease;
+        }
+
+        @keyframes entrada {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            animation: deslizar 0.5s ease backwards;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .form-group:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes deslizar {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #2e3440;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #d8dee9;
+            border-radius: 8px;
+            font-size: 14px;
+            color: #2e3440;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        select:hover {
+            border-color: #5e81ac;
+            background-color: #fff;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #5e81ac;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(94, 129, 172, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            background: linear-gradient(to right, #5e81ac, #81a1c1);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            animation: deslizar 0.5s ease 0.5s backwards;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(94, 129, 172, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px 18px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌿 Encuentra tu Planta Ideal</h1>
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="water"><span class="icon">💧</span>Nivel de agua:</label>
+                <select id="water" name="water">
+                    <option value="muy_poca">Muy poca</option>
+                    <option value="poca">Poca</option>
+                    <option value="moderada">Moderada</option>
+                    <option value="mucha">Mucha</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="light"><span class="icon">☀️</span>Tipo de luz:</label>
+                <select id="light" name="light">
+                    <option value="sombra">Sombra</option>
+                    <option value="indirecta">Luz indirecta</option>
+                    <option value="parcial">Luz parcial</option>
+                    <option value="directa">Sol directo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="location"><span class="icon">🏠</span>Ubicación:</label>
+                <select id="location" name="location">
+                    <option value="interior">Interior</option>
+                    <option value="exterior">Exterior</option>
+                    <option value="ambas">Ambas</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="maintenance"><span class="icon">🛠️</span>Mantenimiento:</label>
+                <select id="maintenance" name="maintenance">
+                    <option value="bajo">Bajo</option>
+                    <option value="medio">Medio</option>
+                    <option value="alto">Alto</option>
+                </select>
+            </div>
+
+            <button type="submit">🔍 Obtener sugerencia</button>
+        </form>
+    </div>
+</body>
+</html> 
